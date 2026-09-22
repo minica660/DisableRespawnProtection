@@ -1,0 +1,9 @@
+name: DisableRespawnProtection
+version: '${version}'
+
+main: MiniCash.disableRespawnProtection.DisableRespawnProtection
+api-version: '1.21.1'
+load: POSTWORLD
+authors:
+  - MiniCash
+description: リスポーン地点にブロックなどが会った際に安全地点に移動されてしまい、ワールドのスポーン地点にスポーンされないことをなるべく修正することを目的としたプラグインです
