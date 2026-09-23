@@ -11,24 +11,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class RespawnEvent implements Listener {
 
-    private final JavaPlugin plugin;
 
-    public RespawnEvent(JavaPlugin plugin){
-        this.plugin = plugin;
-    }
-
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onRespawn(PlayerRespawnEvent event){
+
+        // ベットかリスポーンアンカーにリスポーンする際は処理は行わない
+        if(event.isBedSpawn() || event.isAnchorSpawn()){
+            return;
+        }
 
         Player player = event.getPlayer();
 
-        Location targetLocation = event.getRespawnLocation();
 
-        Bukkit.getScheduler().runTaskLater(plugin , () ->{
-
-            player.teleport(targetLocation);
-
-        },1L);
+        event.setRespawnLocation(player.getWorld().getSpawnLocation());
 
 
     }
